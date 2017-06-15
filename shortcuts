@@ -23,6 +23,8 @@ _ruby() {
 
 
 # Alias
+
+#Proyectos
 alias boot='cd ~/Documents/Bootcamp/'
 alias tf='cd ~/Documents/Bootcamp/_trabajoFinal/A-B_Testing/'
 alias stf='subl ~/Documents/Bootcamp/_trabajoFinal/A-B_Testing/'
@@ -105,7 +107,6 @@ alias rpi='ssh pi@rpi3.local'
 alias rcdominguez='ssh cdominguez@rpi3.local'
 alias rroot='ssh root@rpi3.local'
 alias kh='subl ~/.ssh/known_hosts'
-alias rmkh=remove_known_hosts
 
 # Proyecto A/B Testing
 alias snd_css="scp ~/Documents/Bootcamp/_trabajoFinal/plugin/assets/css/abt.min.css pi@rpi3.local:~/www/api/abt.min.css"
@@ -115,4 +116,7 @@ alias snd_js="scp ~/Documents/Bootcamp/_trabajoFinal/plugin/assets/js/abt.min.js
 alias rdb="rake db:drop db:create db:migrate db:seed"
 
 # .DS_Store
-alias rds="sudo find ./ -name ".DS_Store" -depth -exec rm {} \;"
+alias rds="sudo find ./ -name ".DS_Store" -depth -exec rm {} \;"#upgrade homebrew
+
+#upgrade homebrew
+alias brewup='brew update && brew upgrade && brew cleanup'
