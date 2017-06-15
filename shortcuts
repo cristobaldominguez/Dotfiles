@@ -8,8 +8,17 @@ babel_c() {
     babel $1.js -w --out-file $1.c.js
 }
 
-ruby() {
-	rvm use $1
+_ruby() {
+	if [[ -z "$1" ]] ; then
+		echo "This function expects a parameter"
+		return
+	elif [ $1 == '-v' ]; then
+		rvm current
+	elif [ $1 == '-d' ]; then
+		rvm default
+	else 
+		rvm use $1
+	fi
 }
 
 
