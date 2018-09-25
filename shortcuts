@@ -16,18 +16,21 @@ _ruby() {
 		rvm current
 	elif [ $1 == '-d' ]; then
 		rvm default
-	else 
+	else
 		rvm use $1
 	fi
 }
 
+dev() {
+	sudo spctl --master-$1
+}
 
 # Alias
 
 #Proyectos
-alias boot='cd ~/Documents/Bootcamp/'
-alias tf='cd ~/Documents/Bootcamp/_trabajoFinal/A-B_Testing/'
-alias stf='subl ~/Documents/Bootcamp/_trabajoFinal/A-B_Testing/'
+alias dl='cd ~/Dropbox/Bootcamp/'
+alias boot='cd ~/Dropbox/Bootcamp/B-Learning'
+alias oklock='cd ~/Developer/oklock_mvp/'
 
 alias la='ls -la'
 alias ll='ls -lF'
@@ -46,8 +49,10 @@ alias cl="clear"
 
 alias g="git"
 alias o="open"
-alias o.="open ."
+alias c="code"
 alias s="subl"
+
+alias gc="git clone"
 
 alias tower="gittower"
 
@@ -55,6 +60,12 @@ alias x="exit"
 alias sleep='sudo shutdown -s now "A Dormir..."'
 alias reboot='sudo shutdown -r now "Reiniciando..."'
 alias poff='sudo shutdown -h now "Apagando..."'
+
+# RoR Aliases
+alias rr="rails routes"
+alias rs='rails server'
+alias rc='rails console'
+alias rdb="rake db:drop db:create db:migrate db:seed"
 
 alias sta='sudo apachectl start'
 alias spa='sudo apachectl stop'
@@ -81,6 +92,7 @@ alias localip="ipconfig getifaddr en1"
 
 # Flush Directory Service cache
 alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;say flushed'
+
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
@@ -99,7 +111,7 @@ alias rlc='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
 # Test Internet Connection Speed from the Command Line
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
-# Play Chime sount
+# Play Chime sound
 alias chime='afplay /System/Library/CoreServices/PowerChime.app/Contents/Resources/connect_power.aif'
 
 # Raspberry Pi 3
@@ -108,15 +120,8 @@ alias rcdominguez='ssh cdominguez@rpi3.local'
 alias rroot='ssh root@rpi3.local'
 alias kh='subl ~/.ssh/known_hosts'
 
-# Proyecto A/B Testing
-alias snd_css="scp ~/Documents/Bootcamp/_trabajoFinal/plugin/assets/css/abt.min.css pi@rpi3.local:~/www/api/abt.min.css"
-alias snd_js="scp ~/Documents/Bootcamp/_trabajoFinal/plugin/assets/js/abt.min.js pi@rpi3.local:~/www/api/abt.min.js"
-
-# Reset db
-alias rdb="rake db:drop db:create db:migrate db:seed"
-
 # .DS_Store
-alias rds="sudo find ./ -name ".DS_Store" -depth -exec rm {} \;"#upgrade homebrew
+# alias rds="sudo find ./ -name ".DS_Store" -depth -exec rm {} \;" #upgrade homebrew
 
 #upgrade homebrew
 alias brewup='brew update && brew upgrade && brew cleanup'

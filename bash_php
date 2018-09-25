@@ -1,0 +1,2 @@
+#Load PHP into $PATH
+PATH=/Applications/MAMP/Library/bin:/Applications/MAMP/bin/php/php7.2.8/bin:$PATH
