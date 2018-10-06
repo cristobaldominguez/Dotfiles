@@ -8,12 +8,15 @@ chmod +x wp-cli.phar
 sudo mv wp-cli.phar /usr/local/bin/wp
 
 
+echo "Copiando archivos"
 cp ./bash_php ${HOME}/.bash_php
 cp ./bash_profile ${HOME}/.bash_profile
 cp ./bash_prompt ${HOME}/.bash_prompt
 cp ./bashrc ${HOME}/.bashrc
 cp ./gemrc ${HOME}/.gemrc
 cp ./gitconfig ${HOME}/.gitconfig
+cp ./gitignore ${HOME}/.gitignore
+cp ./gitattributes ${HOME}/.gitattributes
 cp ./inputrc ${HOME}/.inputrc
 cp ./profile ${HOME}/.profile
 cp ./rubocop ${HOME}/.rubocop
