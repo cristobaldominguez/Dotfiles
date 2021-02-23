@@ -1,6 +1,6 @@
-brew "mkvtoolnix", args: ["--with-qt"]
-brew "composer"
+# brew "composer"
 brew "redis"
 brew "postgresql"
-brew "node"
 brew "yarn"
+brew "imagemagick"
+brew "vips"

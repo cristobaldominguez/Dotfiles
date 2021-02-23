@@ -1,2 +1,2 @@
 # Add Rubocop to Atom
-PATH="$PATH:$HOME/.rvm/gems/ruby-2.3.6@global/wrappers/rubocop"
+PATH="$PATH:$HOME/.rvm/gems/ruby-2.7.2@global/wrappers/rubocop"

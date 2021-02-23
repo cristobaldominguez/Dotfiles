@@ -26,26 +26,15 @@ dev() {
 }
 
 # Alias
-
-#Proyectos
-alias dl='cd ~/Dropbox/Bootcamp/'
-alias boot='cd ~/Dropbox/Bootcamp/B-Learning'
-alias oklock='cd ~/Developer/oklock_mvp/'
-
 alias la='ls -la'
 alias ll='ls -lF'
 alias lf='ls -F'
 alias l1='ls -1F'
 alias lla='ls -lAF'
+alias cl="clear"
 
 # List only directories
 alias lsd='ls -l | grep "^d"'
-
-alias home='cd ~'
-
-alias ..="cd .."
-alias ...="cd ../.."
-alias cl="clear"
 
 alias g="git"
 alias o="open"
@@ -65,7 +54,7 @@ alias poff='sudo shutdown -h now "Apagando..."'
 alias rr="rails routes"
 alias rs='rails server'
 alias rc='rails console'
-alias rdb="rake db:drop db:create db:migrate db:seed"
+alias rdb="rails db:drop db:create db:migrate db:seed"
 
 alias sta='sudo apachectl start'
 alias spa='sudo apachectl stop'
@@ -111,17 +100,11 @@ alias rlc='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
 # Test Internet Connection Speed from the Command Line
 alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 
-# Play Chime sound
-alias chime='afplay /System/Library/CoreServices/PowerChime.app/Contents/Resources/connect_power.aif'
-
 # Raspberry Pi 3
 alias rpi='ssh pi@rpi3.local'
 alias rcdominguez='ssh cdominguez@rpi3.local'
 alias rroot='ssh root@rpi3.local'
 alias kh='subl ~/.ssh/known_hosts'
-
-# .DS_Store
-# alias rds="sudo find ./ -name ".DS_Store" -depth -exec rm {} \;" #upgrade homebrew
 
 #upgrade homebrew
 alias brewup='brew update && brew upgrade && brew cleanup'
