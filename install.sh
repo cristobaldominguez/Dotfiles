@@ -7,9 +7,11 @@ echo "Comenzando!"
 # chmod +x wp-cli.phar
 # sudo mv wp-cli.phar /usr/local/bin/wp
 
+
 echo "Instalando Brew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew doctor
+
 
 echo "Instalando Oh-My-Zsh"
 cp -r ./Fonts/. ${HOME}/Library/Fonts
@@ -18,8 +20,10 @@ chmod 755 /usr/local/share/zsh
 chmod 755 /usr/local/share/zsh/site-functions
 cp ./oh-my-zsh-themes/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/
 
+
 echo "Copiando preferencias del Terminal"
 cp ./com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Terminal.plist
+
 
 echo "Instalando NPM"
 curl -sSL https://get.rvm.io | bash -s stable
@@ -27,9 +31,11 @@ rvm requirements
 rvm install ruby-2.7.2
 rvm --default use 2.7.2
 
+
 echo "Instalando NVM"
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
 nvm install 15.9.0
+
 
 echo "Copiando archivos"
 cp ./zshrc ${HOME}/.zshrc
