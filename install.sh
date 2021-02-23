@@ -51,4 +51,10 @@ brew bundle
 rm ${HOME}/Brewfile
 rm ${HOME}/Brewfile.lock.json
 
+
+echo "Configuraciones finales"
+pg_ctl -D /usr/local/var/postgres -l logfile start
+createdb cristobaldominguez
+
+
 echo "Listo!"
