@@ -41,9 +41,7 @@ cp ./shortcuts ${HOME}/.shortcuts
 cp ./hub ${HOME}/.hub
 cp ./rubocop ${HOME}/.rubocop
 cp ./zsh_rvm ${HOME}/.zsh_rvm
-# cp ./zsh_php ${HOME}/.zsh_php
-# mkdir ${HOME}/.zsh_env
-# cp ./zsh_env/. ${HOME}/.zsh_env/
+
 
 echo "Instalando Packages de Brew"
 cp ./Brewfile ${HOME}/Brewfile
