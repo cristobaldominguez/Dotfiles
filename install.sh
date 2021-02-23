@@ -26,15 +26,11 @@ cp ./terminal/com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Ter
 
 
 echo "Instalando NPM"
-curl -sSL https://get.rvm.io | bash -s stable
-rvm requirements
-rvm install ruby-2.7.2
-rvm --default use 2.7.2
+curl -sSL https://get.rvm.io | bash -s stable --ruby
 
 
 echo "Instalando NVM"
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
-nvm install 15.9.0
 
 
 echo "Copiando archivos"
@@ -54,6 +50,16 @@ cp ./Brewfile ${HOME}/Brewfile
 brew bundle
 rm ${HOME}/Brewfile
 rm ${HOME}/Brewfile.lock.json
+
+
+echo "Instalando versiones de Ruby"
+rvm requirements
+rvm install ruby-2.7.2
+rvm --default use 2.7.2
+
+
+echo "Instalando versiones de Node"
+nvm install 15.9.0
 
 
 echo "Configuraciones finales"
