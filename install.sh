@@ -22,7 +22,7 @@ cp ./oh-my-zsh-themes/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/
 
 
 echo "Copiando preferencias del Terminal"
-cp ./com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Terminal.plist
+cp ./terminal/com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Terminal.plist
 
 
 echo "Instalando NPM"
