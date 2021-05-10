@@ -43,6 +43,7 @@ cp ./shortcuts ${HOME}/.shortcuts
 cp ./hub ${HOME}/.hub
 cp ./rubocop ${HOME}/.rubocop
 cp ./zsh_rvm ${HOME}/.zsh_rvm
+cp ./nvmrc ${HOME}/.nvmrc
 
 
 echo "Instalando Packages de Brew"
@@ -59,7 +60,7 @@ rvm --default use 2.7.2
 
 
 echo "Instalando versiones de Node"
-nvm install 15.9.0
+nvm install 15.14.0
 
 
 echo "Configuraciones finales"

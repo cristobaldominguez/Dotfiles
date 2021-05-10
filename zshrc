@@ -8,6 +8,7 @@ source ~/.shortcuts
 source ~/.hub
 source ~/.rubocop
 source ~/.zsh_rvm
+source ~/.nvmrc
 # source ~/.zsh_php
 # source ~/.paris_env
 
