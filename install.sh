@@ -55,8 +55,8 @@ rm ${HOME}/Brewfile.lock.json
 
 echo "Instalando versiones de Ruby"
 rvm requirements
-rvm install ruby-2.7.2
-rvm --default use 2.7.2
+rvm install ruby-2.7.3
+rvm --default use 2.7.3
 
 
 echo "Instalando versiones de Node"
