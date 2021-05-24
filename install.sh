@@ -35,6 +35,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | b
 
 echo "Copiando archivos"
 cp ./zshrc ${HOME}/.zshrc
+cp ./zsh_rvm ${HOME}/.zsh_rvm
+cp ./zsh_nvm ${HOME}/.zsh_nvm
 cp ./gemrc ${HOME}/.gemrc
 cp ./gitattributes ${HOME}/.gitattributes
 cp ./gitconfig ${HOME}/.gitconfig
@@ -42,8 +44,6 @@ cp ./gitignore ${HOME}/.gitignore
 cp ./shortcuts ${HOME}/.shortcuts
 cp ./hub ${HOME}/.hub
 cp ./rubocop ${HOME}/.rubocop
-cp ./zsh_rvm ${HOME}/.zsh_rvm
-cp ./nvmrc ${HOME}/.nvmrc
 
 
 echo "Instalando Packages de Brew"
@@ -60,7 +60,7 @@ rvm --default use 2.7.3
 
 
 echo "Instalando versiones de Node"
-nvm install 15.14.0
+nvm install 14.17.0
 
 
 echo "Configuraciones finales"

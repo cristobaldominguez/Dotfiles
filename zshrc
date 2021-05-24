@@ -1,14 +1,16 @@
+# Stack Installation
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Load several elements
-# source ~/.bash_prompt
-# source ~/.inputrc
+source ~/.zsh_rvm
+source ~/.zsh_nvm
 source ~/.shortcuts
 source ~/.hub
 source ~/.rubocop
-source ~/.zsh_rvm
-source ~/.nvmrc
+#source ~/.nvmrc
+# source ~/.bash_prompt
+# source ~/.inputrc
 # source ~/.zsh_php
 # source ~/.paris_env
 
@@ -20,7 +22,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
-
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
