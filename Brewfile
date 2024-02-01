@@ -1,3 +1,5 @@
+tap 'oven-sh/bun'
+
 # brew "composer"
 brew "jq"
 brew "bash"
