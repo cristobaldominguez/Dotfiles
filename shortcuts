@@ -1,0 +1,134 @@
+#!/bin/zsh
+
+# Functions
+function known_hosts() {
+    sed -i .bak -e $1d ~/.ssh/known_hosts
+}
+
+function quarantine() {
+	sudo xattr -r -d com.apple.quarantine $1
+}
+
+function youtube() {
+	yt-dlp --no-check-certificate -f "bestvideo[height<=1080]+bestaudio/best[height<=1080]" --add-metadata --merge-output-format mkv $1
+}
+
+function local_ip() {
+	ips=$(ifconfig | grep -w 'inet \|192.168' | awk '{print $2}')
+	echo $ips
+}
+
+# Show/hide hidden files in Finder
+# Params: true, false
+show_hidden() {
+	`defaults write com.apple.finder AppleShowAllFiles -bool $1 && killall Finder`
+}
+
+# Hide/show all desktop icons (useful when presenting)
+# Params: true, false
+show_desktop_icons() {
+	`defaults write com.apple.finder CreateDesktop -bool $1 && killall Finder`
+}
+
+rm_nested_git() {
+	for i in `find . -type d -name .git -print | sed 's#/.git##'`; do
+		echo $i;
+		rm -rf $i/.git;
+		git rm --cached -r $i;
+		git add $i;
+	done
+}
+
+# Aliases
+alias la='ls -lah'
+alias ll='ls -lF'
+alias lf='ls -F'
+alias l1='ls -1F'
+alias lla='ls -lAF'
+
+# List only directories
+alias lsd='ls -l | grep "^d"'
+
+alias x="exit"
+alias cl="clear"
+
+alias g="git"
+alias o="open"
+alias c="code"
+
+alias gc="git clone"
+alias tower="gittower"
+
+alias sleep='sudo shutdown -s now "A Dormir..."'
+alias reboot='sudo shutdown -r now "Reiniciando..."'
+alias poff='sudo shutdown -h now "Apagando..."'
+
+# RoR Aliases
+alias rr="rails routes"
+alias rs='rails s --binding=0.0.0.0 -p 80'
+alias rc='rails console'
+alias reset_db="rails db:drop db:create db:migrate db:seed"
+alias dev_db="bin/rails db:environment:set RAILS_ENV=development"
+alias code_credential="EDITOR='code --wait' rails credentials:edit"
+
+# Python Aliases
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+# alias python='python3'
+# alias pip='pip3'
+
+# Apache
+alias sta='sudo apachectl start'
+alias spa='sudo apachectl stop'
+alias rsa='sudo apachectl restart'
+
+# MySQL
+alias mstart='mysql.server start'
+alias mstop='mysql.server stop'
+alias mrestart='mysql.server restart'
+# alias mysql='/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot'
+
+# PostgreSQL
+alias pstart='brew services start postgresql@15'
+alias pstop='brew services stop postgresql@15'
+alias prestart='brew services restart postgresql@15'
+# alias pstart='pg_ctl -D /usr/local/var/postgres -l logfile start'
+# alias pstop='pg_ctl -D /usr/local/var/postgres -l logfile stop'
+# alias pstart='pg_ctl -D /usr/local/var/postgresql@15 -l logfile start'
+# alias pstop='pg_ctl -D /usr/local/var/postgresql@15 -l logfile stop'
+
+# Redis
+alias rstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
+alias rstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
+
+alias stam="sudo apachectl start; mysql.server start; terminal-notifier -title 'MAMP SERVERS' -subtitle 'MAMP Ready' -message 'Apache Server and MySQL Server Started' -sound 'Purr' -group 'mamp'"
+alias spam="sudo apachectl stop; mysql.server stop; terminal-notifier -title 'MAMP SERVERS' -subtitle 'MAMP Stopped' -message 'Apache Server and MySQL Server Stopped' -sound 'Purr' -group 'mamp'"
+
+# Recursively delete `.DS_Store` files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+
+# Show/hide hidden files in Finder
+alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hide_desktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias show_desktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# Flush Directory Service cache
+alias flush_dns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;say flushed'
+
+# Empty the Trash on all mounted volumes and the main HDD
+# Also, clear Apple’s System Logs to improve shell startup speed
+alias empty_trash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+
+# One-Line Terminal Command to Refresh Launchpad Contents
+alias rlc='defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock'
+
+# Test Internet Connection Speed from the Command Line
+alias speed_test='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
+
+# Upgrade homebrew
+alias brewup='brew update && brew upgrade && brew cleanup'
