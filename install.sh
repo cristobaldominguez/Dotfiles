@@ -25,7 +25,7 @@ fi
 
 # echo "Instalando Oh-My-Zsh"
 cp -r ./Fonts/. ${HOME}/Library/Fonts
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 chmod 755 /usr/local/share/zsh
 chmod 755 /usr/local/share/zsh/site-functions
 cp ./oh-my-zsh-themes/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/
