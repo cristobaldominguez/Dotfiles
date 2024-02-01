@@ -37,10 +37,10 @@ cp ./terminal/com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Ter
 
 echo "Instalando RVM"
 curl -L https://get.rvm.io | bash -s stable
-curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-rvm get master
-rvm install ruby --latest
+# curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+# curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+# rvm get master
+# rvm install ruby --latest
 rvm requirements
 
 
