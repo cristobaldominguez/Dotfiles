@@ -43,7 +43,7 @@ rm ${HOME}/Brewfile.lock.json
 
 brew_bash=$(brew info bash)
 directory=$(print $brew_bash | grep -wi "$(brew --prefix)/Cellar/bash/[0-9]......" | awk '{print $1}')
-echo "sudo $directory/bin/bash" >> /etc/shells
+sudo sh -c "echo $directory/bin/bash >> /etc/shells"
 
 
 echo "Copiando archivos"
@@ -61,7 +61,7 @@ fnm install --lts
 
 
 echo "Configuraciones finales"
-brew services start postgresql@15
+brew services start postgresql@16
 createdb cristobaldominguez
 
 
