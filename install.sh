@@ -35,15 +35,6 @@ cp ./oh-my-zsh-themes/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/
 cp ./terminal/com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Terminal.plist
 
 
-echo "Instalando RVM"
-curl -L https://get.rvm.io | bash -s stable
-# curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-# curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
-# rvm get master
-# rvm install ruby --latest
-rvm requirements
-
-
 echo "Instalando Packages de Brew"
 cp ./Brewfile ${HOME}/Brewfile
 brew bundle
@@ -59,11 +50,9 @@ echo "Copiando archivos"
 cp ./zshrc ${HOME}/.zshrc
 cp ./zsh_rvm ${HOME}/.zsh_rvm
 cp ./gemrc ${HOME}/.gemrc
-# cp ./rubocop ${HOME}/.rubocop
 cp ./gitattributes ${HOME}/.gitattributes
 cp ./gitconfig ${HOME}/.gitconfig
 cp ./gitignore ${HOME}/.gitignore
-# cp ./hub ${HOME}/.hub
 cp ./shortcuts ${HOME}/.shortcuts
 
 
