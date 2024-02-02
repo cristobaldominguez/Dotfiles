@@ -35,34 +35,34 @@ cp ./oh-my-zsh-themes/agnoster.zsh-theme ${HOME}/.oh-my-zsh/themes/
 cp ./terminal/com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Terminal.plist
 
 
-echo "Instalando Packages de Brew"
-cp ./Brewfile ${HOME}/Brewfile
-brew bundle
-rm ${HOME}/Brewfile
-# rm ${HOME}/Brewfile.lock.json
+# echo "Instalando Packages de Brew"
+# cp ./Brewfile ${HOME}/Brewfile
+# brew bundle
+# rm ${HOME}/Brewfile
+# # rm ${HOME}/Brewfile.lock.json
 
-brew_bash=$(brew info bash)
-directory=$(print $brew_bash | grep -wi "$(brew --prefix)/Cellar/bash/[0-9]......" | awk '{print $1}')
-sudo sh -c "echo $directory/bin/bash >> /etc/shells"
-
-
-echo "Copiando archivos"
-cp ./zshrc ${HOME}/.zshrc
-cp ./zsh_rvm ${HOME}/.zsh_rvm
-cp ./gemrc ${HOME}/.gemrc
-cp ./gitattributes ${HOME}/.gitattributes
-cp ./gitconfig ${HOME}/.gitconfig
-cp ./gitignore ${HOME}/.gitignore
-cp ./shortcuts ${HOME}/.shortcuts
+# brew_bash=$(brew info bash)
+# directory=$(print $brew_bash | grep -wi "$(brew --prefix)/Cellar/bash/[0-9]......" | awk '{print $1}')
+# sudo sh -c "echo $directory/bin/bash >> /etc/shells"
 
 
-echo "Instalando la versión de Node LTS más nueva"
-fnm install --lts
+# echo "Copiando archivos"
+# cp ./zshrc ${HOME}/.zshrc
+# cp ./zsh_rvm ${HOME}/.zsh_rvm
+# cp ./gemrc ${HOME}/.gemrc
+# cp ./gitattributes ${HOME}/.gitattributes
+# cp ./gitconfig ${HOME}/.gitconfig
+# cp ./gitignore ${HOME}/.gitignore
+# cp ./shortcuts ${HOME}/.shortcuts
 
 
-echo "Configuraciones finales"
-brew services start postgresql@16
-createdb cristobaldominguez
+# echo "Instalando la versión de Node LTS más nueva"
+# fnm install --lts
 
 
-echo "Listo!"
+# echo "Configuraciones finales"
+# brew services start postgresql@16
+# createdb cristobaldominguez
+
+
+# echo "Listo!"
