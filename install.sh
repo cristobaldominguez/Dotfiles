@@ -39,7 +39,7 @@ echo "Instalando Packages de Brew"
 cp ./Brewfile ${HOME}/Brewfile
 brew bundle
 rm ${HOME}/Brewfile
-rm ${HOME}/Brewfile.lock.json
+# rm ${HOME}/Brewfile.lock.json
 
 brew_bash=$(brew info bash)
 directory=$(print $brew_bash | grep -wi "$(brew --prefix)/Cellar/bash/[0-9]......" | awk '{print $1}')
