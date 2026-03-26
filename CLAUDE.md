@@ -20,13 +20,14 @@ This is THE file that matters. Everything starts here. The installation sequence
 4. **Fonts** — Meslo LG Powerline fonts copied to `~/Library/Fonts`
 5. **Oh-My-Zsh** — installed unattended (no interactive prompts)
 6. **Terminal preferences** — restores `com.apple.Terminal.plist` to `~/Library/Preferences`
-7. **Homebrew packages** — runs `brew bundle` from `Brewfile` (all tools, casks, and taps)
-8. **Zsh plugins** — clones 3 plugins into Oh-My-Zsh custom plugins directory:
+7. **Homebrew packages** — runs `brew bundle --file=./Brewfile` (all tools, casks, and taps)
+8. **Zsh plugins** — clones 3 plugins into Oh-My-Zsh custom plugins directory (idempotent — skips if already exists):
    - `zsh-autosuggestions`
    - `zsh-syntax-highlighting`
    - `zsh-history-substring-search`
 9. **Dotfiles** — copies config files directly to `$HOME`
-10. **Node LTS** — installs latest LTS via `fnm`
+10. **RVM + Ruby 3.3** — installs RVM stable via GPG + curl, then installs Ruby 3.3 with `openssl@3`
+11. **Node LTS** — installs latest LTS via `fnm`
 
 To run on a fresh Mac:
 
@@ -65,7 +66,7 @@ After editing any of these files, the change only takes effect in the shell afte
 
 - **No Stow or symlinks** — copy-based deployment means diffs between repo and `~` can silently drift.
 - **`zshrc` sources `~/.shortcuts` and `~/.zsh_customization`** — both are in the repo and copied to `$HOME` by `install.sh`.
-- **RVM** — `zsh_rvm` adds RVM to PATH. RVM itself is not installed by `install.sh` (the install step was removed); if Ruby tooling is needed, this may require manual installation.
+- **RVM** — instalado por `install.sh` vía `curl -sSL https://get.rvm.io | bash -s stable`. Instala Ruby 3.3 con `openssl@3`. `zsh_rvm` agrega RVM al PATH en cada sesión de shell.
 - **Node via fnm** — `install.sh` installs Node LTS at setup time. `zshrc` initializes fnm on every shell start.
 - **git-crypt** — `gitattributes` has git-crypt filters configured. Any file marked with the `crypt` attribute will be encrypted; ensure git-crypt is unlocked before working with those files.
 

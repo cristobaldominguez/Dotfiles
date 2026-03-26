@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -e
 
 echo "Comenzando!"
 
@@ -8,50 +9,49 @@ if [[ $(uname -m) == 'arm64' ]]; then
 fi
 
 
-# echo "Instalando Herramientas de xCode"
-xcode-select --install
+echo "Instalando Herramientas de xCode"
+if ! xcode-select -p &>/dev/null; then
+  xcode-select --install
+fi
 
 
-# echo "Instalando Brew"
+echo "Instalando Brew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew_check=$(brew doctor)
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
+brew_check=$(brew doctor)
 if ! [[ $brew_check =~ 'ready to brew' ]]; then
   echo "Error en Brew"
   exit 1
 fi
 
 
-# echo "Instalando Oh-My-Zsh"
+echo "Instalando Oh-My-Zsh"
 cp -r ./Fonts/. ${HOME}/Library/Fonts
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# echo "Copiando preferencias del Terminal"
+echo "Copiando preferencias del Terminal"
 cp ./terminal/com.apple.Terminal.plist ${HOME}/Library/Preferences/com.apple.Terminal.plist
 
 
 echo "Instalando Packages de Brew"
-cp ./Brewfile ${HOME}/Brewfile
-brew bundle
-rm ${HOME}/Brewfile
-
-# brew_bash=$(brew info bash)
-# directory=$(print $brew_bash | grep -wi "$(brew --prefix)/Cellar/bash/[0-9]......" | awk '{print $1}')
-# sudo sh -c "echo $directory/bin/bash >> /etc/shells"
+brew bundle --file=./Brewfile
 
 
 echo "Instalando plugines de Zsh"
-# zsh-autosuggestions
+ZSH_CUSTOM="${ZSH_CUSTOM:-${HOME}/.oh-my-zsh/custom}"
+
 echo "Instalando zsh-autosuggestions"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+[ ! -d "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" ] && \
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
 
-# zsh-syntax-highlighting
 echo "Instalando zsh-syntax-highlighting"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+[ ! -d "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" ] && \
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
 
-# zsh-history-substring-search
 echo "Instalando zsh-history-substring-search"
-git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+[ ! -d "${ZSH_CUSTOM}/plugins/zsh-history-substring-search" ] && \
+  git clone https://github.com/zsh-users/zsh-history-substring-search "${ZSH_CUSTOM}/plugins/zsh-history-substring-search"
 
 
 echo "Copiando archivos"
@@ -68,8 +68,7 @@ cp ./zsh_customization ${HOME}/.zsh_customization
 echo "Instalando RVM"
 gpg --keyserver keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
 curl -sSL https://get.rvm.io | bash -s stable
-rvm get head
-rvm install 4.0 --with-openssl-dir=$(brew --prefix openssl@3)
+rvm install 3.3 --with-openssl-dir=$(brew --prefix openssl@3)
 
 
 echo "Instalando la versión de Node LTS más nueva"
