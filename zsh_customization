@@ -1,0 +1,78 @@
+####### Básicos y calidad de vida #######
+
+# Historial
+HISTFILE=~/.zsh_history
+HISTSIZE=200000
+SAVEHIST=200000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt EXTENDED_HISTORY
+
+# Navegación y globbing útiles
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt EXTENDED_GLOB
+
+# Completion (muy importante)
+autoload -Uz compinit
+# Si notas que compinit tarda, puedes cachear el dump:
+# compinit -d ~/.zcompdump
+compinit
+
+# Completion tuning
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+####### Keybindings (ZLE / readline-style) #######
+
+# Usa keymap emacs (es el que entiende Alt/Meta típico)
+bindkey -e
+
+# Home/End suelen funcionar bien así
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+
+# Ctrl+Left/Right (si tu Terminal los manda) para moverte por palabras
+# (no siempre llegan igual; si no funcionan, los quitamos)
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
+# Ctrl+W: borrar palabra anterior (clásico)
+bindkey '^W' backward-kill-word
+
+
+####### “Meta selectivo” usando Option SIN activarlo como Meta #######
+# Aquí mapeamos los caracteres que genera ⌥ + tecla a widgets ZLE.
+
+# 1) ⌥ + D  -> borrar palabra siguiente (kill-word)
+# Común: ∂ (U+2202)
+bindkey 'ð' kill-word
+
+# 2) ⌥ + Backspace -> borrar palabra anterior (backward-kill-word)
+# Comunes: ¬ (U+00AC) o ˙ (U+02D9). Dejamos ambos por si acaso.
+bindkey $'\u00AC' backward-kill-word
+bindkey $'\u02D9' backward-kill-word
+
+# 3) ⌥ + T -> intercambiar palabras (transpose-words)
+# Común: † (U+2020)
+bindkey $'\u2020' transpose-words
+
+
+####### Extras útiles (opcional pero buenísimo) #######
+
+# Editar la línea actual en tu editor ($EDITOR) con Ctrl+X Ctrl+E
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+# Búsqueda incremental en historial (Ctrl+R ya viene, pero esto mejora UX)
+bindkey '^R' history-incremental-search-backward

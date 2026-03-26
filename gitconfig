@@ -46,15 +46,6 @@
 	ca = !git add -A && git commit -av
 	rd = !git ls-files --deleted -z | xargs -0 git rm
 	aa = add --all .
-	branches = !legit branches
-	graft = !legit graft
-	harvest = !legit harvest
-	publish = !legit publish
-	unpublish = !legit unpublish
-	sprout = !legit sprout
-	sync = !legit sync
-	switch = !legit switch
-	resync = !legit resync
 
 [push]
 	default = simple
@@ -67,9 +58,6 @@
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
-[diff]
-	tool = Kaleidoscope
-
 [difftool]
 	prompt = false
 
@@ -81,18 +69,19 @@
 	prompt = false
 	keepBackup = false
 
-[merge]
-	tool = Kaleidoscope
 [difftool "sourcetree"]
 	cmd = /usr/local/bin/ksdiff -w \"$LOCAL\" \"$REMOTE\"
-	path = 
+
 [mergetool "sourcetree"]
 	cmd = /usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+
 [help]
 	autocorrect = 1
+
 [url "https://"]
