@@ -1,0 +1,15 @@
+# Core sources
+source ~/.shortcuts
+source ~/.zsh_customization
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='code'
+else
+  export EDITOR='nano'
+fi
+
+# Source modular configs (installed by each setup step)
+for config_file in ~/.zsh.d/*.zsh(N); do
+  source "$config_file"
+done

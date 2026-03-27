@@ -73,35 +73,6 @@ alias code_credential="EDITOR='code --wait' rails credentials:edit"
 
 # Python Aliases
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-# alias python='python3'
-# alias pip='pip3'
-
-# Apache
-alias sta='sudo apachectl start'
-alias spa='sudo apachectl stop'
-alias rsa='sudo apachectl restart'
-
-# MySQL
-alias mstart='mysql.server start'
-alias mstop='mysql.server stop'
-alias mrestart='mysql.server restart'
-# alias mysql='/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot'
-
-# PostgreSQL
-alias pstart='brew services start postgresql@15'
-alias pstop='brew services stop postgresql@15'
-alias prestart='brew services restart postgresql@15'
-# alias pstart='pg_ctl -D /usr/local/var/postgres -l logfile start'
-# alias pstop='pg_ctl -D /usr/local/var/postgres -l logfile stop'
-# alias pstart='pg_ctl -D /usr/local/var/postgresql@15 -l logfile start'
-# alias pstop='pg_ctl -D /usr/local/var/postgresql@15 -l logfile stop'
-
-# Redis
-alias rstart='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
-alias rstop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.redis.plist'
-
-alias stam="sudo apachectl start; mysql.server start; terminal-notifier -title 'MAMP SERVERS' -subtitle 'MAMP Ready' -message 'Apache Server and MySQL Server Started' -sound 'Purr' -group 'mamp'"
-alias spam="sudo apachectl stop; mysql.server stop; terminal-notifier -title 'MAMP SERVERS' -subtitle 'MAMP Stopped' -message 'Apache Server and MySQL Server Stopped' -sound 'Purr' -group 'mamp'"
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
