@@ -14,20 +14,18 @@ The purpose is simple: whenever a Mac needs to be set up (new machine, reinstall
 
 This is THE file that matters. Everything starts here. The installation sequence is:
 
-1. **Rosetta** — installs on Apple Silicon (ARM64) machines
-2. **Xcode CLI tools** — required by everything else
-3. **Homebrew** — with a health check before continuing
-4. **Fonts** — Meslo LG Powerline fonts copied to `~/Library/Fonts`
-5. **Oh-My-Zsh** — installed unattended (no interactive prompts)
-6. **Terminal preferences** — restores `com.apple.Terminal.plist` to `~/Library/Preferences`
-7. **Homebrew packages** — runs `brew bundle --file=./Brewfile` (all tools, casks, and taps)
-8. **Zsh plugins** — clones 3 plugins into Oh-My-Zsh custom plugins directory (idempotent — skips if already exists):
+1. **Rosetta** (`01_rosetta.sh`) — installs on Apple Silicon (ARM64) machines
+2. **Xcode CLI tools** (`02_xcode.sh`) — required by everything else
+3. **Dotfiles** (`03_dotfiles.sh`) — copies config files from `dotfiles/` to `$HOME`, creates `~/.zsh.d/`
+4. **Homebrew** (`04_homebrew.sh`) — with a health check before continuing
+5. **Oh-My-Zsh** (`05_ohmyzsh.sh`) — fonts, Oh-My-Zsh unattended, Terminal preferences
+6. **Homebrew packages** (`06_brew_packages.sh`) — runs `brew bundle --file=./Brewfile`
+7. **Zsh plugins** (`07_zsh_plugins.sh`) — clones 3 plugins into Oh-My-Zsh custom plugins directory:
    - `zsh-autosuggestions`
    - `zsh-syntax-highlighting`
    - `zsh-history-substring-search`
-9. **Dotfiles** — copies config files directly to `$HOME`
-10. **RVM + Ruby 3.3** — installs RVM stable via GPG + curl, then installs Ruby 3.3 with `openssl@3`
-11. **Node LTS** — installs latest LTS via `fnm`
+8. **Ruby via mise** (`08_mise_ruby.sh`) — installs latest Ruby via mise (fallback: `ruby@3`), copies `gemrc`
+9. **Node LTS via mise** (`09_node.sh`) — installs latest LTS via `mise use --global node@lts`, copies pnpm config
 
 To run on a fresh Mac:
 
@@ -39,35 +37,59 @@ cd Dotfiles
 
 ## How dotfiles are deployed
 
-There is no symlink manager. `install.sh` uses `cp` to copy files directly to `~`. The mapping is:
+There is no symlink manager. Each installation step uses `cp` to copy files to their destinations. The mapping is:
+
+**Deployed by `scripts/03_dotfiles.sh`:**
 
 | Repo file | Destination |
 |-----------|-------------|
-| `zshrc` | `~/.zshrc` |
-| `shortcuts` | `~/.shortcuts` |
-| `zsh_customization` | `~/.zsh_customization` |
-| `zsh_rvm` | `~/.zsh_rvm` |
-| `gitconfig` | `~/.gitconfig` |
-| `gitignore` | `~/.gitignore` |
-| `gitattributes` | `~/.gitattributes` |
-| `gemrc` | `~/.gemrc` |
+| `dotfiles/zshrc` | `~/.zshrc` |
+| `dotfiles/shortcuts` | `~/.shortcuts` |
+| `dotfiles/zsh_customization` | `~/.zsh_customization` |
+| `dotfiles/gitconfig` | `~/.gitconfig` |
+| `dotfiles/gitignore` | `~/.gitignore` |
+| `dotfiles/gitattributes` | `~/.gitattributes` |
+| `zsh/99_compinit.zsh` | `~/.zsh.d/99_compinit.zsh` |
 
-After editing any of these files, the change only takes effect in the shell after re-running `install.sh` or manually copying the file to `$HOME`.
+**Deployed by their respective installation step:**
+
+| Repo file | Destination | Deployed by |
+|-----------|-------------|-------------|
+| `dotfiles/gemrc` | `~/.gemrc` | `08_mise_ruby.sh` |
+| `zsh/01_homebrew.zsh` | `~/.zsh.d/01_homebrew.zsh` | `04_homebrew.sh` |
+| `zsh/02_ohmyzsh.zsh` | `~/.zsh.d/02_ohmyzsh.zsh` | `05_ohmyzsh.sh` |
+| `zsh/03_brew_tools.zsh` | `~/.zsh.d/03_brew_tools.zsh` | `06_brew_packages.sh` |
+| `zsh/04_pnpm.zsh` | `~/.zsh.d/04_pnpm.zsh` | `09_node.sh` |
+
+After editing any of these files, the change only takes effect in the shell after re-running `install.sh` or manually copying the file to its destination.
+
+## Modular zsh configuration (`zsh/` directory)
+
+The `zsh/` directory contains modular shell configuration files deployed to `~/.zsh.d/`. The main `zshrc` is a thin loader that sources all `*.zsh` files from `~/.zsh.d/` in alphabetical order. Each file is owned by the installation step that installs the corresponding tool.
+
+| File | Owned by | Contents |
+|------|----------|----------|
+| `zsh/01_homebrew.zsh` | `04_homebrew.sh` | `brew shellenv` — sets Homebrew PATH and env vars |
+| `zsh/02_ohmyzsh.zsh` | `05_ohmyzsh.sh` | ZSH_THEME, plugins, source oh-my-zsh.sh, agnoster override |
+| `zsh/03_brew_tools.zsh` | `06_brew_packages.sh` | mise, gnu-sed, fzf, bat |
+| `zsh/04_pnpm.zsh` | `09_node.sh` | PNPM_HOME and PATH |
+| `zsh/99_compinit.zsh` | `03_dotfiles.sh` | Final `compinit` — must run after all fpath mods |
 
 ## Key files
 
 - **`Brewfile`** — all Homebrew packages and casks. Add new tools here.
-- **`zshrc`** — Oh-My-Zsh config, PATH exports, plugin list, tool initializations (fnm, fzf, bat, terraform, pnpm).
-- **`shortcuts`** — aliases and shell functions. Service management (PostgreSQL 15, MySQL, Redis), Rails shortcuts, macOS utilities.
-- **`gitconfig`** — Git identity (Cristobal Dominguez), aliases, diff/merge tools (Kaleidoscope, SourceTree).
+- **`dotfiles/zshrc`** — thin loader: sources `~/.shortcuts`, `~/.zsh_customization`, and all `~/.zsh.d/*.zsh` files.
+- **`dotfiles/zsh_customization`** — history config (HISTFILE, HISTSIZE, setopts), keybindings, completion styles.
+- **`dotfiles/shortcuts`** — aliases and shell functions. Service management (PostgreSQL 15, MySQL, Redis), Rails shortcuts, macOS utilities.
+- **`dotfiles/gitconfig`** — Git identity (Cristobal Dominguez), aliases, diff/merge tools (Kaleidoscope, SourceTree).
 - **`install.sh`** — orchestrates the full setup sequence.
 
 ## Architecture notes
 
 - **No Stow or symlinks** — copy-based deployment means diffs between repo and `~` can silently drift.
-- **`zshrc` sources `~/.shortcuts` and `~/.zsh_customization`** — both are in the repo and copied to `$HOME` by `install.sh`.
-- **RVM** — instalado por `install.sh` vía `curl -sSL https://get.rvm.io | bash -s stable`. Instala Ruby 3.3 con `openssl@3`. `zsh_rvm` agrega RVM al PATH en cada sesión de shell.
-- **Node via fnm** — `install.sh` installs Node LTS at setup time. `zshrc` initializes fnm on every shell start.
+- **`dotfiles/zshrc` sources `~/.shortcuts` and `~/.zsh_customization`** — both are in `dotfiles/` and copied to `$HOME` by `03_dotfiles.sh`.
+- **Ruby via mise** — mise se instala vía Brewfile. `scripts/08_mise_ruby.sh` corre `mise use --global ruby@latest` (fallback: `ruby@3`). `zsh/03_brew_tools.zsh` inicializa mise con `eval "$(/opt/homebrew/bin/mise activate zsh)"`.
+- **Node via mise** — `scripts/09_node.sh` installs Node LTS via `mise use --global node@lts`. mise is pre-installed via Brewfile.
 - **git-crypt** — `gitattributes` has git-crypt filters configured. Any file marked with the `crypt` attribute will be encrypted; ensure git-crypt is unlocked before working with those files.
 
 ## Tap dependency

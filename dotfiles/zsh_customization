@@ -19,12 +19,6 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt EXTENDED_GLOB
 
-# Completion (muy importante)
-autoload -Uz compinit
-# Si notas que compinit tarda, puedes cachear el dump:
-# compinit -d ~/.zcompdump
-compinit
-
 # Completion tuning
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
