@@ -49,7 +49,6 @@ There is no symlink manager. Each installation step uses `cp` to copy files to t
 | `dotfiles/gitconfig` | `~/.gitconfig` |
 | `dotfiles/gitignore` | `~/.gitignore` |
 | `dotfiles/gitattributes` | `~/.gitattributes` |
-| `zsh/99_compinit.zsh` | `~/.zsh.d/99_compinit.zsh` |
 
 **Deployed by their respective installation step:**
 
@@ -73,7 +72,6 @@ The `zsh/` directory contains modular shell configuration files deployed to `~/.
 | `zsh/02_ohmyzsh.zsh` | `05_ohmyzsh.sh` | ZSH_THEME, plugins, source oh-my-zsh.sh, agnoster override |
 | `zsh/03_brew_tools.zsh` | `06_brew_packages.sh` | mise, gnu-sed, fzf, bat |
 | `zsh/04_pnpm.zsh` | `09_node.sh` | PNPM_HOME and PATH |
-| `zsh/99_compinit.zsh` | `03_dotfiles.sh` | Final `compinit` — must run after all fpath mods |
 
 ## Key files
 

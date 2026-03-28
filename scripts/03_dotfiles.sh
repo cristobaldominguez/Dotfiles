@@ -12,6 +12,5 @@ cp "${REPO_DIR}/dotfiles/shortcuts"         "${HOME}/.shortcuts"
 cp "${REPO_DIR}/dotfiles/zsh_customization" "${HOME}/.zsh_customization"
 
 mkdir -p "${HOME}/.zsh.d"
-cp "${REPO_DIR}/zsh/99_compinit.zsh" "${HOME}/.zsh.d/99_compinit.zsh"
 
 echo "✓ Dotfiles copiados"
