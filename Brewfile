@@ -36,3 +36,4 @@ cask 'firefox@developer-edition'
 # Apps
 cask 'tower'
 cask 'cleanmymac-zh'
+cask 'postman'
