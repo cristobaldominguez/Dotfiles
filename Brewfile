@@ -32,6 +32,7 @@ brew 'Gentleman-Programming/homebrew-tap/gentle-ai'
 # Browsers
 cask 'firefox'
 cask 'firefox@developer-edition'
+cask 'safari-technology-preview'
 
 # Apps
 cask 'tower'
