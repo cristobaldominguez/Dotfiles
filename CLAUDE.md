@@ -26,6 +26,7 @@ This is THE file that matters. Everything starts here. The installation sequence
    - `zsh-history-substring-search`
 8. **Ruby via mise** (`08_mise_ruby.sh`) — installs latest Ruby via mise (fallback: `ruby@3`), copies `gemrc`
 9. **Node LTS via mise** (`09_node.sh`) — installs latest LTS via `mise use --global node@lts`, copies pnpm config
+10. **Ollama** (`10_ollama.sh`) — installs via official curl installer, copies `zsh/05_ollama.zsh` with Claude Code env vars
 
 To run on a fresh Mac:
 
@@ -59,6 +60,7 @@ There is no symlink manager. Each installation step uses `cp` to copy files to t
 | `zsh/02_ohmyzsh.zsh` | `~/.zsh.d/02_ohmyzsh.zsh` | `05_ohmyzsh.sh` |
 | `zsh/03_brew_tools.zsh` | `~/.zsh.d/03_brew_tools.zsh` | `06_brew_packages.sh` |
 | `zsh/04_pnpm.zsh` | `~/.zsh.d/04_pnpm.zsh` | `09_node.sh` |
+| `zsh/05_ollama.zsh` | `~/.zsh.d/05_ollama.zsh` | `10_ollama.sh` |
 
 After editing any of these files, the change only takes effect in the shell after re-running `install.sh` or manually copying the file to its destination.
 
@@ -72,6 +74,7 @@ The `zsh/` directory contains modular shell configuration files deployed to `~/.
 | `zsh/02_ohmyzsh.zsh` | `05_ohmyzsh.sh` | ZSH_THEME, plugins, source oh-my-zsh.sh, agnoster override |
 | `zsh/03_brew_tools.zsh` | `06_brew_packages.sh` | mise, gnu-sed, fzf, bat |
 | `zsh/04_pnpm.zsh` | `09_node.sh` | PNPM_HOME and PATH |
+| `zsh/05_ollama.zsh` | `10_ollama.sh` | ANTHROPIC_AUTH_TOKEN, ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL for Claude Code |
 
 ## Key files
 

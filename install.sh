@@ -55,5 +55,6 @@ run_step "Brew Packages"   "06_brew_packages.sh"
 run_step "Zsh Plugins"     "07_zsh_plugins.sh"
 run_step "Ruby"            "08_mise_ruby.sh"
 run_step "Node LTS"        "09_node.sh"
+run_step "Ollama"          "10_ollama.sh"
 
 echo "Listo, instalación completa!."
