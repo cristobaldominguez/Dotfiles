@@ -4,7 +4,6 @@ REPO_DIR="$1"
 
 echo "=== Copiando Dotfiles ==="
 
-cp "${REPO_DIR}/dotfiles/zshrc"             "${HOME}/.zshrc"
 cp "${REPO_DIR}/dotfiles/gitattributes"     "${HOME}/.gitattributes"
 cp "${REPO_DIR}/dotfiles/gitconfig"         "${HOME}/.gitconfig"
 cp "${REPO_DIR}/dotfiles/gitignore"         "${HOME}/.gitignore"

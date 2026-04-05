@@ -16,3 +16,6 @@ echo "✓ Preferencias de Terminal copiadas"
 mkdir -p "${HOME}/.zsh.d"
 cp "${REPO_DIR}/zsh/02_ohmyzsh.zsh" "${HOME}/.zsh.d/02_ohmyzsh.zsh"
 echo "✓ Configuración zsh de Oh-My-Zsh copiada"
+
+cp "${REPO_DIR}/dotfiles/zshrc" "${HOME}/.zshrc"
+echo "✓ ~/.zshrc desplegado"

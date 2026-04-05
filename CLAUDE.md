@@ -44,7 +44,6 @@ There is no symlink manager. Each installation step uses `cp` to copy files to t
 
 | Repo file | Destination |
 |-----------|-------------|
-| `dotfiles/zshrc` | `~/.zshrc` |
 | `dotfiles/shortcuts` | `~/.shortcuts` |
 | `dotfiles/zsh_customization` | `~/.zsh_customization` |
 | `dotfiles/gitconfig` | `~/.gitconfig` |
@@ -55,6 +54,7 @@ There is no symlink manager. Each installation step uses `cp` to copy files to t
 
 | Repo file | Destination | Deployed by |
 |-----------|-------------|-------------|
+| `dotfiles/zshrc` | `~/.zshrc` | `05_ohmyzsh.sh` |
 | `dotfiles/gemrc` | `~/.gemrc` | `08_mise_ruby.sh` |
 | `zsh/01_homebrew.zsh` | `~/.zsh.d/01_homebrew.zsh` | `04_homebrew.sh` |
 | `zsh/02_ohmyzsh.zsh` | `~/.zsh.d/02_ohmyzsh.zsh` | `05_ohmyzsh.sh` |
