@@ -36,6 +36,6 @@ cask 'safari-technology-preview'
 
 # Apps
 cask 'tower'
-cask 'cleanmymac-zh'
+cask 'cleanmymac'
 cask 'postman'
 cask 'chatgpt'
