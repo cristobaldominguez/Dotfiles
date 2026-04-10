@@ -18,8 +18,10 @@ source $ZSH/oh-my-zsh.sh
 # Agnoster theme customization (must be AFTER source oh-my-zsh.sh)
 CURRENT_FG='white'
 
+# Customization for Agnoster theme
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.) "
+    # prompt_segment black default "%(!.%{%F{yellow}%}.) "
+    prompt_segment "$AGNOSTER_CONTEXT_BG" "$AGNOSTER_CONTEXT_FG" "%(!.%{%F{$AGNOSTER_STATUS_ROOT_FG}%}.) "
   fi
 }
