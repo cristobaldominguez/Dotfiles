@@ -31,6 +31,7 @@ brew 'Gentleman-Programming/homebrew-tap/gentle-ai'
 
 # Browsers
 cask 'firefox'
+cask 'brave-browser'
 cask 'firefox@developer-edition'
 cask 'safari-technology-preview'
 
